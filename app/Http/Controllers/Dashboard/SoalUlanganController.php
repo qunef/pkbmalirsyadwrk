@@ -12,8 +12,8 @@ class SoalUlanganController extends Controller
 {
     public function index()
     {
-        $soalulangans = soalulangan::latest()->paginate(10);
-        return view('dashboard.soal-ulangan.index', compact('soalulangans')); // Ganti path view
+        $soalulangans = SoalUlangan::latest()->paginate(10);
+        return view('dashboard.soal-ulangan.index', compact('soalulangans')); 
     }
 
     public function create()
@@ -35,15 +35,15 @@ class SoalUlanganController extends Controller
 
         soalulangan::create($validatedData);
 
-        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'soalulangan berhasil diupload.'); 
+        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File Soal Ulangan berhasil diupload.'); 
     }
 
-    public function edit(soalulangan $soalulangan)
+    public function edit(SoalUlangan $soalulangan)
     {
         return view('dashboard.soal-ulangan.edit', compact('soalulangan')); 
     }
 
-    public function update(Request $request, soalulangan $soalulangan)
+    public function update(Request $request, SoalUlangan $soal_ulangan)
     {
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
@@ -60,13 +60,13 @@ class SoalUlanganController extends Controller
 
         $soalulangan->update($validatedData);
 
-        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File soalulangan berhasil diperbarui.'); 
+        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File Soal Ulangan berhasil diperbarui.'); 
     }
 
-    public function destroy(soalulangan $soalulangan)
+    public function destroy(SoalUlangan $soal_ulangan)
     {
-        Storage::disk('public')->delete($soalulangan->file_path);
-        $soalulangan->delete();
-        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File soalulangan berhasil dihapus.'); 
+        Storage::disk('public')->delete($soal_ulangan->file_path);
+        $soal_ulangan->delete();
+        return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File Soal Ulangan berhasil dihapus.'); 
     }
 }

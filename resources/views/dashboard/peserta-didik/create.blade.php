@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<h2>Tambah Modul Baru</h2>
+<h2>Tambah File Peserta Didik Baru</h2>
 
 @include('partials.alerts')
 
 <form action="{{ route('dashboard.peserta-didik.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
-        <label for="judul" class="form-label">Judul Modul</label>
+        <label for="judul" class="form-label">Judul File Peserta Didik</label>
         <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul') }}" required>
     </div>
     <div class="mb-3">

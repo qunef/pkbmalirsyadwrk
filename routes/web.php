@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-// Import semua controller yang akan kita gunakan
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProfilSekolahController;
@@ -12,22 +11,9 @@ use App\Http\Controllers\Dashboard\ModulController;
 use App\Http\Controllers\Dashboard\DaftarHadirController;
 use App\Http\Controllers\Dashboard\SoalUlanganController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Di sinilah Anda mendaftarkan rute web untuk aplikasi Anda.
-|
-*/
-
-// Rute untuk Halaman Depan (Landing Page)
 Route::get('/', [LandingPageController::class, 'index'])->name('landing'); 
 
-// Grup Rute untuk semua halaman Dashboard
-// Prefix 'dashboard' akan ditambahkan di depan URL (contoh: /dashboard/modul)
-// Name 'dashboard.' akan ditambahkan di depan nama rute (contoh: dashboard.modul.index)
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
 
     // Rute utama dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -44,3 +30,12 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::resource('soal-ulangan', SoalUlanganController::class);
 
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+

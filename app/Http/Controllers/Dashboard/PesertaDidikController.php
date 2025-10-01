@@ -38,12 +38,12 @@ class PesertaDidikController extends Controller
         return redirect()->route('dashboard.peserta-didik.index')->with('success', 'File Peserta Didik berhasil diupload.'); 
     }
 
-    public function edit(PesertaDidik $pesertadidik)
+    public function edit(PesertaDidik $peserta_didik)
     {
-        return view('dashboard.peserta-didik.edit', compact('pesertadidik')); 
+        return view('dashboard.peserta-didik.edit', compact('peserta_didik')); 
     }
 
-    public function update(Request $request, PesertaDidik $pesertadidik)
+    public function update(Request $request, PesertaDidik $peserta_didik)
     {
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
@@ -53,20 +53,20 @@ class PesertaDidikController extends Controller
         ]);
 
         if ($request->hasFile('file_pdf')) {
-            Storage::disk('public')->delete($pesertadidik->file_path);
+            Storage::disk('public')->delete($peserta_didik->file_path);
             $filePath = $request->file('file_pdf')->store('pdfs/peserta-didik', 'public'); 
             $validatedData['file_path'] = $filePath;
         }
 
-        $pesertadidik->update($validatedData);
+        $peserta_didik->update($validatedData);
 
         return redirect()->route('dashboard.peserta-didik.index')->with('success', 'File Peserta Didik berhasil diperbarui.'); 
     }
 
-    public function destroy(PesertaDidik $pesertadidik)
+    public function destroy(PesertaDidik $peserta_didik)
     {
-        Storage::disk('public')->delete($pesertadidik->file_path);
-        $pesertadidik->delete();
+        Storage::disk('public')->delete($peserta_didik->file_path);
+        $peserta_didik->delete();
         return redirect()->route('dashboard.peserta-didik.index')->with('success', 'File Peserta Didik berhasil dihapus.'); 
     }
 }

@@ -13,6 +13,7 @@ class SoalUlangan extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'soalulangans';
     protected $fillable = [
         'judul',
         'paket',

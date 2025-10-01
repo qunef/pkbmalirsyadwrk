@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Manajemen Peserta Didik</h2>
+    <h2>Manajemen Soal Ulangan</h2>
     <a href="{{ route('dashboard.soal-ulangan.create') }}" class="btn btn-primary">Tambah File Soal Ulangan</a>
 </div>
 

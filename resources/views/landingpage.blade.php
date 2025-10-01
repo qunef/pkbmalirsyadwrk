@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>PKBM</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/jpg" href="{{ asset('assets/img/logo.jpg') }}">
         <!-- Bootstrap Icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -24,7 +24,7 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <img src="{{ asset('assets/img/logo.png') }}" class="logo" alt="logo">
+                        <img src="{{ asset('assets/img/logo.jpg') }}" class="logo" alt="logo">
                         <h1 class="text-white font-weight-bold">PUSAT KEGIATAN BELAJAR MASYARAKAT (PKBM)</h1><br>
                         <h2 class="text-white font-weight-bold">Yayasan Al-Irsyad</h2>
                         <h5 class="text-white font-weight-bold">Paket B dan C</h5>
@@ -57,29 +57,33 @@
                 <h2 class="text-center mt-0">Modul</h2>
                 <hr class="divider" />
                 <div class="isi">
-                    <div class="col-lg-8 col-md-7 text-left">
+                    <div class="col-lg-8 col-md-7 text-left">   
                         <div class="mt-5">
                             <h3 class="h4 mb-2">Profil Sekolah</h3>
                             <table class="text-muted mb-1">
                                 <tr>
                                     <td>Nama Sekolah</td>
-                                    <td>: PKBM Yayasan Al-Irsyad</td>
+                                    <td>: {{ $profil->nama_sekolah }}</td>
                                 </tr>
                                 <tr>
                                     <td>NPSN</td>
-                                    <td>: 20505270</td>
+                                    <td>: {{ $profil->npsn }}</td>
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
-                                    <td>: Kp. Songgom Ds. Songgom Kec. Gekbrong Kab. Cianjur</td>
+                                    <td>: {{ $profil->alamat }}</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="mt-5">
                             <h3 class="h4 mb-2">Tutor</h3>
+                            @if($tutor)
                             <p class="text-muted mb-1">
-                                Nama Tutor : Nita Rismayanti
+                                Nama Tutor : {{ $tutor->nama_tutor }}
                             </p>
+                            @else
+                            <p class="text-muted mb-1">Data tutor belum diisi.</p>
+                            @endif
                         </div>
                         <div class="mt-5">
                             <h3 class="h4 mb-2">Nama Peserta Didik</h3>
@@ -89,9 +93,9 @@
                                         Paket B
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownPaketB">
-                                        <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                        <li> Kelas 1 @if($siswaB1) <a href="{{ asset('storage/' . $siswaB1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 2 @if($siswaB2) <a href="{{ asset('storage/' . $siswaB2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 3 @if($siswaB3) <a href="{{ asset('storage/' . $siswaB3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                     </ul>
                                 </div>
                                 <div class="dropdown">
@@ -99,9 +103,9 @@
                                         Paket C
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownPaketC">
-                                        <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                        <li> Kelas 1 @if($siswaC1) <a href="{{ asset('storage/' . $siswaC1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 2 @if($siswaC2) <a href="{{ asset('storage/' . $siswaC2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 3 @if($siswaC3) <a href="{{ asset('storage/' . $siswaC3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                     </ul>
                                 </div>
                             </div>
@@ -114,9 +118,9 @@
                                         Paket B
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownPaketB">
-                                        <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                        <li> Kelas 1 @if($modulB1) <a href="{{ asset('storage/' . $modulB1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 2 @if($modulB2) <a href="{{ asset('storage/' . $modulB2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 3 @if($modulB3) <a href="{{ asset('storage/' . $modulB3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                     </ul>
                                 </div>
                                 <div class="dropdown">
@@ -124,9 +128,9 @@
                                         Paket C
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownPaketC">
-                                        <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                        <li> Kelas 1 @if($modulC1) <a href="{{ asset('storage/' . $modulC1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 2 @if($modulC2) <a href="{{ asset('storage/' . $modulC2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                        <li> Kelas 3 @if($modulC3) <a href="{{ asset('storage/' . $modulC3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                     </ul>
                                 </div>
                             </div>
@@ -138,9 +142,9 @@
                                             Paket B
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownPaketB">
-                                            <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                            <li> Kelas 1 @if($hadirB1) <a href="{{ asset('storage/' . $hadirB1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 2 @if($hadirB2) <a href="{{ asset('storage/' . $hadirB2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 3 @if($hadirB3) <a href="{{ asset('storage/' . $hadirB3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                         </ul>
                                     </div>
                                     <div class="dropdown">
@@ -148,9 +152,9 @@
                                             Paket C
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownPaketC">
-                                            <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                            <li> Kelas 1 @if($hadirC1) <a href="{{ asset('storage/' . $hadirC1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 2 @if($hadirC2) <a href="{{ asset('storage/' . $hadirC2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 3 @if($hadirC3) <a href="{{ asset('storage/' . $hadirC3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -163,9 +167,9 @@
                                             Paket B
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownPaketB">
-                                            <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                            <li> Kelas 1 @if($soalB1) <a href="{{ asset('storage/' . $soalB1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 2 @if($soalB2) <a href="{{ asset('storage/' . $soalB2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 3 @if($soalB3) <a href="{{ asset('storage/' . $soalB3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                         </ul>
                                     </div>
                                     <div class="dropdown">
@@ -173,9 +177,9 @@
                                             Paket C
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownPaketC">
-                                            <li><a class="dropdown-item" href="#">Kelas 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Kelas 3</a></li>
+                                            <li> Kelas 1 @if($soalC1) <a href="{{ asset('storage/' . $soalC1->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 2 @if($soalC2) <a href="{{ asset('storage/' . $soalC2->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
+                                            <li> Kelas 3 @if($soalC3) <a href="{{ asset('storage/' . $soalC3->file_path) }}" target="_blank" class="dropdown-item">Lihat File</a> @else <span class="badge bg-secondary rounded-pill">Belum Ada</span> @endif</li>
                                         </ul>
                                     </div>
                                 </div>

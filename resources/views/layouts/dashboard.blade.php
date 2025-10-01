@@ -11,6 +11,7 @@
         .sidebar { width: 250px; min-height: 100vh; background-color: #343a40; }
         .content { flex-grow: 1; padding: 30px; }
     </style>
+    <link rel="icon" type="image/jpg" href="{{ asset('assets/img/logo.jpg') }}">
 </head>
 <body>
     <div class="sidebar p-3 text-white">
@@ -37,6 +38,16 @@
             </li>
              <li class="nav-item">
                 <a class="nav-link text-white {{ request()->routeIs('dashboard.soal-ulangan.*') ? 'active' : '' }}" href="{{ route('dashboard.soal-ulangan.index') }}">Soal Ulangan</a>
+            </li>
+            <li class="nav-item mt-auto">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" 
+                    class="nav-link text-danger" 
+                    onclick="event.preventDefault(); this.closest('form').submit();">
+                        Logout
+                    </a>
+                </form>
             </li>
         </ul>
     </div>

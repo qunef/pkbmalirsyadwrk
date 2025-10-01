@@ -13,6 +13,7 @@ class PesertaDidik extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'pesertadidiks';
     protected $fillable = [
         'judul',
         'paket',

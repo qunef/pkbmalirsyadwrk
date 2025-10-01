@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<h2>Tambah File Peserta Didik Baru</h2>
+<h2>Tambah File Modul Baru</h2>
 
 @include('partials.alerts')
 

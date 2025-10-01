@@ -14,6 +14,7 @@ class DaftarHadir extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'daftarhadirs';
     protected $fillable = [
         'judul',
         'paket',
