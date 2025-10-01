@@ -38,9 +38,9 @@ class SoalUlanganController extends Controller
         return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File Soal Ulangan berhasil diupload.'); 
     }
 
-    public function edit(SoalUlangan $soalulangan)
+    public function edit(SoalUlangan $soal_ulangan)
     {
-        return view('dashboard.soal-ulangan.edit', compact('soalulangan')); 
+        return view('dashboard.soal-ulangan.edit', compact('soal_ulangan')); 
     }
 
     public function update(Request $request, SoalUlangan $soal_ulangan)
@@ -53,12 +53,12 @@ class SoalUlanganController extends Controller
         ]);
 
         if ($request->hasFile('file_pdf')) {
-            Storage::disk('public')->delete($soalulangan->file_path);
+            Storage::disk('public')->delete($soal_ulangan->file_path);
             $filePath = $request->file('file_pdf')->store('pdfs/soal-ulangan', 'public'); 
             $validatedData['file_path'] = $filePath;
         }
 
-        $soalulangan->update($validatedData);
+        $soal_ulangan->update($validatedData);
 
         return redirect()->route('dashboard.soal-ulangan.index')->with('success', 'File Soal Ulangan berhasil diperbarui.'); 
     }

@@ -5,7 +5,7 @@
 
 @include('partials.alerts')
 
-<form action="{{ route('dashboard.peserta-didik.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('dashboard.modul.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="judul" class="form-label">Judul Modul</label>
@@ -26,7 +26,7 @@
         <label for="file_pdf" class="form-label">Upload File PDF</label>
         <input class="form-control" type="file" id="file_pdf" name="file_pdf" required accept=".pdf">
     </div>
-    <a href="{{ route('dashboard.peserta-didik.index') }}" class="btn btn-secondary">Batal</a>
+    <a href="{{ route('dashboard.modul.index') }}" class="btn btn-secondary">Batal</a>
     <button type="submit" class="btn btn-primary">Simpan</button>
 </form>
 @endsection
