@@ -39,3 +39,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+use Illuminate\Support\Facades\DB;
+
+Route::get('/test-db-connection', function () {
+    try {
+        DB::connection()->getPdo();
+        return "Selamat! Koneksi ke database berhasil dibuat.";
+    } catch (\Exception $e) {
+        die("Gagal terhubung ke database. Pesan error: " . $e->getMessage());
+    }
+});
+
